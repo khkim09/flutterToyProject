@@ -199,7 +199,7 @@ class _NewToDoScreenState extends State<NewToDoScreen> {
                                                 );
                                               },
                                               child: Text(DateFormat("HH : mm").format(startTime), style: const TextStyle(fontSize: 20, color: Colors.black),)
-                                          )
+                                          ),
                                       ),
                                     ),
                                   ],

@@ -15,11 +15,7 @@ TodoList 생성
 5. firebase 구현 (미완)
 6. 리스트 시간 순 정렬 구현 (미완)
 
-
-
 #### hive 사용 설명서
-
-
 
 Hive 구조 건설
 ```dart

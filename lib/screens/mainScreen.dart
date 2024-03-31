@@ -14,7 +14,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   var todoList = Hive.box<TodoBox>('myBox').values.toList().cast<TodoBox>();
 
-  onTapNewToDo() { //추가는 newtodoscreen에 콜백 함수(updateList) 생성해서 즉시 적용되도록 구현(updateTodoList)
+  onTapNewToDo() { //추가는 newtodoscreen에 callback 함수(updateList) 생성해서 즉시 적용되도록 구현(updateTodoList)
     Navigator.push(context, MaterialPageRoute(builder: (context) => NewToDoScreen(updateList: updateTodoList,)));
   }
 

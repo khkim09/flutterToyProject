@@ -22,6 +22,7 @@ class _MainScreenState extends State<MainScreen> {
     setState(() {
       todoList = Hive.box<TodoBox>('myBox').values.toList().cast<TodoBox>();
     });
+    todoList.sort((a,b) => a.startDate.compareTo(b.startDate)); //시작 시간 순 정렬
   }
 
   void deleteTodoIndex(int index) { //삭제는 delete 아이콘 onPressed 시 setState로 todoList에서 지워주고 hive에서 지워주기

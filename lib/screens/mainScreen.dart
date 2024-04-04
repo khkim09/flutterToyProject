@@ -39,6 +39,8 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         backgroundColor: Colors.amber.shade100,
         toolbarHeight: 100,
+        leading: const Placeholder(),
+        leadingWidth: 0,
         title: Column(
           children: [
             const Row(

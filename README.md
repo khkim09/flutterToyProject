@@ -20,7 +20,7 @@ TodoList 생성
 1. 회원가입 -> 로그인 시, 개인 todolist로 실행 X (모두 일관된 data 가짐) - 24.04.05
 
 
-### hive 사용 설명서
+## hive 사용 설명서
 
 Hive 구조 건설
 ```dart
@@ -141,7 +141,7 @@ Hive.box<TodoBox>('myBox').add(newTodo);
 > 마지막에 Hive.box<TodoBox>('myBox').add(newTodo); 로 Hive에 추가
 
 
-### Firebase 사용 설명서
+## Firebase 사용 설명서
 
 > 하단 링크 참고
 > <https://www.notion.so/Flutter-Firebase-19eb42b0dc984be0b38d439f436abfd5?pvs=4>

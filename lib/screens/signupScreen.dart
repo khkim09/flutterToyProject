@@ -160,6 +160,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         catch (e) {
                           Fluttertoast.showToast(msg: "이미 가입된 이메일입니다.");
                         }
+                        Fluttertoast.showToast(msg: "회원가입 성공");
                         Navigator.pop(context);
                       }
                     },

@@ -15,6 +15,10 @@ TodoList 생성
 5. 리스트 시간 순 정렬 구현
 6. firebase 구현
 
+
+## issues
+1. 회원가입 -> 로그인 시, 개인 todolist로 실행 X (모두 일관된 data 가짐) - 24.04.05
+
 #### hive 사용 설명서
 
 Hive 구조 건설

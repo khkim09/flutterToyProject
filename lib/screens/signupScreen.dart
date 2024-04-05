@@ -157,11 +157,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               password: pwController.text.toString()
                           );
                         }
-                        catch (e) {
-                          Fluttertoast.showToast(msg: "이미 가입된 이메일입니다.");
+                        on FirebaseAuthException catch (e) {
+                          if (e.code == 'weak-password') {
+                            Fluttertoast.showToast(msg: "보안에 취약한 비밀번호입니다");
+                          }
+                          else if (e.code == 'email-already-in-use') {
+                            Fluttertoast.showToast(msg: "이미 가입된 이메일입니다.");
+                          }
                         }
-                        Fluttertoast.showToast(msg: "회원가입 성공");
-                        Navigator.pop(context);
+                        catch (e) {
+                          Fluttertoast.showToast(msg: "회원가입 성공");
+                          Navigator.pop(context);
+                        }
                       }
                     },
                     child: const Text("가입하기", style: TextStyle(fontSize: 18)),

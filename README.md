@@ -18,6 +18,9 @@ TodoList 생성
 
 ## issues
 1. 회원가입 -> 로그인 시, 개인 todolist로 실행 X (모두 일관된 data 가짐) - 24.04.05
+      firestore를 통해 해결해야 되는 것으로 보임
+2. 로그인 성공 시, Navigator.push로 인해 뒤로가기 버튼 생성됨
+    임시방편으로, ```dartleading: const Placeholder(), leadingWidth: 0,``` -> 화면 왼쪽 끝에 까만 선 생김
 
 
 ## hive 사용 설명서
@@ -145,3 +148,31 @@ Hive.box<TodoBox>('myBox').add(newTodo);
 
 > 하단 링크 참고
 > <https://www.notion.so/Flutter-Firebase-19eb42b0dc984be0b38d439f436abfd5?pvs=4>
+
+
+FirebaseAuth의 메서드 설명
+```dart
+onPressed: () async{
+   try {
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+         email: emailController.text.toString(),
+         password: pwController.text.toString()
+      );
+      Get.offAll(() => const MainScreen());
+   }
+   on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+         Fluttertoast.showToast(msg: "등록되지 않은 이메일입니다");
+      }
+      else if (e.code == 'wrong-password') {
+         Fluttertoast.showToast(msg: "비밀번호를 확인하세요");
+      }
+   }
+   //await Navigator.push(context, MaterialPageRoute(builder: (context) => const MainScreen()));
+   //Navigator.pop(context);
+}
+```
+
+> signInWithEmailAndPassword -> 단순히 Firebase에 (해당 계정 : 비밀번호) 존재 여부 파악
+> createUserWithEmailAndPassword -> Firebase에 (계정 : 비번) 생성
+> userCredential 변수 -> 큰 의미 없음 / await FirebaseAuth.instance.signInWithEmailAndPassword 로 바로 써도 무관

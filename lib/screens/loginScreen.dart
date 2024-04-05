@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:todo_list/screens/mainScreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -66,19 +67,24 @@ class _LoginScreenState extends State<LoginScreen> {
                             backgroundColor: Colors.white
                         ),
                         onPressed: () async{
-                          try { //error 잡기
+                          //여기서 부터 다시 고민해보기 - 24.04.05
+                          try {
                             UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
                                 email: emailController.text.toString(),
                                 password: pwController.text.toString()
                             );
+                            await Navigator.push(context, MaterialPageRoute(builder: (context) => const MainScreen()));
                           }
-                          catch (e) {
-                            Fluttertoast.showToast(msg: "이메일 또는 비밀번호가 올바르지 않습니다.");
-                            return;
+                          on FirebaseAuthException catch (e) {
+                            if (e.code == 'user-not-found') {
+                              Fluttertoast.showToast(msg: "등록되지 않은 이메일입니다");
+                            }
+                            else if (e.code == 'wrong-password') {
+                              Fluttertoast.showToast(msg: "비밀번호를 확인하세요");
+                            }
                           }
-
-                          await Navigator.push(context, MaterialPageRoute(builder: (context) => const MainScreen()));
-                          Navigator.pop(context);
+                          //await Navigator.push(context, MaterialPageRoute(builder: (context) => const MainScreen()));
+                          //Navigator.pop(context);
                         },
                         child: const Text("회원 로그인", style: TextStyle(fontSize: 18),)
                     ),
